@@ -52,7 +52,7 @@ También se aplicaron conceptos como:
 
 ## Captura del juego
 
-![Viborita](Imagenes/Viborita ejempo.png)
+![Viborita](Imagenes/Viboritaejemplo.png)
 
 ---
 
