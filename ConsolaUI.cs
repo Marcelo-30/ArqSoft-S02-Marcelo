@@ -7,53 +7,149 @@ namespace Ahorcado
     public class ConsolaUI
     {
         private readonly MotorAhorcado _motor;
+
         public ConsolaUI(MotorAhorcado motor)
         {
             _motor = motor;
         }
+
         public void MostrarTablero()
         {
             Console.Clear();
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("╔══════════════════════════════╗");
+            Console.WriteLine("║        JUEGO AHORCADO        ║");
+            Console.WriteLine("╚══════════════════════════════╝");
+            Console.ResetColor();
+
+            Console.WriteLine();
+
             MostrarAhorcado();
+
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"Intentos restantes: {_motor.IntentosRestantes}");
-            Console.WriteLine($"Letras usadas: {string.Join(",", _motor.LetrasUsadas)}");
+            Console.ResetColor();
+
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine($"Letras usadas: {string.Join(", ", _motor.LetrasUsadas)}");
+            Console.ResetColor();
+
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("Palabra: ");
+            Console.ResetColor();
+
             foreach (char c in _motor.PalabraSecreta)
-                Console.Write(_motor.LetrasUsadas.Contains(c) ? c : '_');
+            {
+                if (_motor.LetrasUsadas.Contains(c))
+                    Console.Write($" {c} ");
+                else
+                    Console.Write(" _ ");
+            }
+
             Console.WriteLine();
         }
-        /* Continúa en la siguiente slide */
+
         public char PedirLetra()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.Write("\nIngresa una letra: ");
-            return Console.ReadLine()[0];
+            Console.ResetColor();
+
+            string? entrada = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(entrada))
+                return ' ';
+
+            return entrada.ToLower()[0];
         }
-        public void MostrarMensaje(string mensaje) => Console.WriteLine(mensaje);
+
+        public void MostrarMensaje(string mensaje)
+        {
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($"» {mensaje}");
+            Console.ResetColor();
+        }
+
         public bool PreguntarOtraVez()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("\n¿Jugar otra vez? (s/n): ");
+            Console.ResetColor();
+
             return Console.ReadLine()?.ToLower() == "s";
         }
-/* Continúa en la siguiente slide */
-private void MostrarAhorcado()
-{
-string[] etapas = new string[]
-{
-" -----\n | |\n |\n |\n |\n |\n========="
-,
-" -----\n | |\n O |\n |\n |\n |\n========="
-,
-" -----\n | |\n O |\n | |\n |\n |\n========="
-,
-" -----\n | |\n O |\n/| |\n |\n |\n========="
-,
-" -----\n | |\n O |\n/|\\ |\n |\n |\n========="
-,
-" -----\n | |\n O |\n/|\\ |\n/ |\n |\n========="
-,
-" -----\n | |\n O |\n/|\\ |\n/ \\ |\n |\n========="
-};
-Console.WriteLine(etapas[6 - _motor.IntentosRestantes]);
-}
-}
+
+        private void MostrarAhorcado()
+        {
+            string[] etapas = new string[]
+            {
+@"  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========",
+
+@"  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========",
+
+@"  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========",
+
+@"  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========",
+
+@"  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========",
+
+@"  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========",
+
+@"  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+========="
+            };
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(etapas[6 - _motor.IntentosRestantes]);
+            Console.ResetColor();
+        }
+    }
 }
