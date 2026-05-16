@@ -56,7 +56,6 @@ También se aplicaron conceptos como:
 
 #  Captura del juego
 
-```markdown
 ![Ahorcado](Imagenes/ahorcado.png)
 
 ---
