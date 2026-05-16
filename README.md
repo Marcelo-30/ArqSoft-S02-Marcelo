@@ -50,6 +50,12 @@ También se aplicaron conceptos como:
 
 ---
 
+## Captura del juego
+
+![Viborita](Imagenes/Viborita ejempo.png)
+
+---
+
 #  Cláusula de IA
 
 Durante el desarrollo del proyecto se utilizó inteligencia artificial como herramienta de apoyo para:
